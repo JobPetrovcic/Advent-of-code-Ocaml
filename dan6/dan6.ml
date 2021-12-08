@@ -27,7 +27,7 @@ let izpisi_datoteko ime_datoteke vsebina =
     close_out chan;;
 (* za drugi del naloge samo spremenite številko iz 80 na 256 *)
 let () =
-    for i=1 to 256 do
+    for i=1 to 80 do
         let novdp = Array.init (le+1) (fun x-> 0) in
         for i=1 to le do
             novdp.(i-1) <- ((novdp.(i-1))+(zac.(i)))
@@ -39,3 +39,16 @@ let () =
         done;
     done;
     izpisi_datoteko "day_6_1.out" (string_of_int (sum 0));;
+let () =
+    for i=1 to 256 do
+        let novdp = Array.init (le+1) (fun x-> 0) in
+        for i=1 to le do
+            novdp.(i-1) <- ((novdp.(i-1))+(zac.(i)))
+        done;
+        novdp.(6) <- ((novdp.(6))+(zac.(0)));
+        novdp.(8) <- ((novdp.(8))+(zac.(0)));
+        for i=0 to le do
+            zac.(i) <- novdp.(i)
+        done;
+    done;
+    izpisi_datoteko "day_6_2.out" (string_of_int (sum 0));;
